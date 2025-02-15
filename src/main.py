@@ -1,5 +1,5 @@
 from textnode import *
-from htmlnode import *
+from htmlnode import HTMLNode
 
 def main():
     text_node = TextNode("This is a text node", TextType.BOLD, "https://www.win.com")
