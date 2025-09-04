@@ -39,6 +39,19 @@ def extract_markdown_links(text):
 
 
 def split_nodes_image(old_nodes):
+    new_nodes = []
+
+    for node in old_nodes:
+        image_extractions = extract_markdown_images(node.text)
+
+        if len(image_extractions) == 0:
+            return [old_nodes]
+
+        image_alt = image_extractions[0][0]
+        image_link = image_extractions[0][1]
+    
+        working_node_text = []
+        sections = node.text.split(f"!{image_alt}]({image_link})", 1)
 
 
 def split_nodes_link(old_nodes):
