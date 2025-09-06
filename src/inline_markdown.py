@@ -46,7 +46,7 @@ def split_nodes_image(old_nodes):
 
         if len(image_extractions) == 0:
             return [old_nodes]
-
+        #this should probably be inside another loop so each extracted link in the array is processed.
         image_alt = image_extractions[0][0]
         image_link = image_extractions[0][1]
     
