@@ -43,27 +43,32 @@ def split_nodes_image(old_nodes):
 
     for node in old_nodes:
         image_extractions = extract_markdown_images(node.text)
-        
-        working_node_text = []
+
+        working_node_text = node.text
         sections = []
+        parts = []
 
         if len(image_extractions) == 0:
-            return [node]
+            new_nodes.append(node)
+            continue
 
         for image_extraction in image_extractions:
-            image_alt = image_extraction[0][0]
-            image_link = image_extraction[0][1]
-    
-            sections.extend(node.text.split(f"![{image_alt}]({image_link})", 1))
+            image_alt = image_extraction[0]
+            image_link = image_extraction[1]
 
-        for i in range(len(sections)):
-            if sections[i] == "":
+            sections = working_node_text.split(f"![{image_alt}]({image_link})", 1)
+
+            if sections[0] == "":
                 continue
-            if i % 2 == 0:
-                working_node_text.append(TextNode(sections[i], TextType.TEXT))
-            else:
-                working_node_text.append(TextNode(sections[i], TextType.IMAGE))
-        new_nodes.extend(working_node_text)
+            parts.append(TextNode(sections[0], TextType.TEXT))
+            parts.append(TextNode(image_alt, TextType.IMAGE, image_link))
+
+            working_node_text = sections[1]
+        
+        if len(working_node_text) >= 0:
+            parts.append(TextNode(working_node_text, TextType.TEXT))
+
+        new_nodes.extend(parts)
     return new_nodes
 
-def split_nodes_link(old_nodes):
+    def split_nodes_link(old_nodes):
