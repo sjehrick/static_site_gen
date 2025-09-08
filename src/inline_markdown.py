@@ -48,13 +48,13 @@ def split_nodes_image(old_nodes):
         sections = []
 
         if len(image_extractions) == 0:
-            return [old_nodes]
+            return [node]
 
         for image_extraction in image_extractions:
-            image_alt = image_extractions[0][0]
-            image_link = image_extractions[0][1]
+            image_alt = image_extraction[0][0]
+            image_link = image_extraction[0][1]
     
-            sections.extend(node.text.split(f"!{image_alt}]({image_link})", 1))
+            sections.extend(node.text.split(f"![{image_alt}]({image_link})", 1))
 
         for i in range(len(sections)):
             if sections[i] == "":
