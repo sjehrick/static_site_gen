@@ -49,7 +49,6 @@ def split_nodes_image(old_nodes):
         image_extractions = extract_markdown_images(node.text)
 
         working_node_text = node.text
-        sections = []
         parts = []
 
         if len(image_extractions) == 0:
@@ -62,13 +61,10 @@ def split_nodes_image(old_nodes):
 
             sections = working_node_text.split(f"![{image_alt}]({image_link})", 1)
 
-            if sections[0] == "":
-                parts.append(TextNode(image_alt, TextType.IMAGE, image_link))
-                continue
-            
             if sections[0] != "":
                 parts.append(TextNode(sections[0], TextType.TEXT))
-                parts.append(TextNode(image_alt, TextType.IMAGE, image_link))
+            
+            parts.append(TextNode(image_alt, TextType.IMAGE, image_link))
             
             working_node_text = sections[1]
         
