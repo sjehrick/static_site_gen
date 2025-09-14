@@ -1,7 +1,7 @@
 import unittest
 
 from leafnode import LeafNode
-from split_nodes_delimiter import split_nodes_delimiter
+from inline_markdown import split_nodes_delimiter
 from textnode import TextNode, TextType
 from textnode_to_htmlnode import text_node_to_html_node
 
