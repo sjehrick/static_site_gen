@@ -20,3 +20,11 @@ def markdown_to_blocks(markdown):
         new_blocks.append(block)
 
     return new_blocks
+
+def block_to_block_type(block):
+    match block:
+        case block.startswith("#"):
+            return BlockType.HEADING
+        case block.startswith("```") and block.endswith("```"):
+            return BlockType.CODE
+        
