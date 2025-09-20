@@ -27,4 +27,4 @@ def block_to_block_type(block):
             return BlockType.HEADING
         case block.startswith("```") and block.endswith("```"):
             return BlockType.CODE
-        
+        #should I use the match case syntax here or just go for a bunch of if statements?
