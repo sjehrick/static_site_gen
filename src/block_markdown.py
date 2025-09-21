@@ -22,12 +22,14 @@ def markdown_to_blocks(markdown):
     return new_blocks
 
 def block_to_block_type(block):
-    match block:
-        case block.startswith("#"):
+    lines = block.split("\n")
+    if len(lines) == 1:
+        if block.startswith("#"):
             return BlockType.HEADING
-        case block.startswith("```") and block.endswith("```"):
+        if block.startswith("```") and block.endswith("```"):
             return BlockType.CODE
-        #should I use the match case syntax here or just go for a bunch of if statements?
+    for line in lines:
+        if line.startswith(">")
         #for quote, split the block into line with a \n delimiter then use startswith
         #for UL same as quote but starts with is "- "
         #for OL might have to see if startswith supports pattern matching or use for loop
