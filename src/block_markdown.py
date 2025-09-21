@@ -28,3 +28,7 @@ def block_to_block_type(block):
         case block.startswith("```") and block.endswith("```"):
             return BlockType.CODE
         #should I use the match case syntax here or just go for a bunch of if statements?
+        #for quote, split the block into line with a \n delimiter then use startswith
+        #for UL same as quote but starts with is "- "
+        #for OL might have to see if startswith supports pattern matching or use for loop
+        #none is the default condition 
