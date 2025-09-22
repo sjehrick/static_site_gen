@@ -22,14 +22,31 @@ def markdown_to_blocks(markdown):
     return new_blocks
 
 def block_to_block_type(block):
-    lines = block.split("\n")
-    if len(lines) == 1:
-        if block.startswith("#"):
-            return BlockType.HEADING
-        if block.startswith("```") and block.endswith("```"):
-            return BlockType.CODE
-    for line in lines:
-        if line.startswith(">")
+    if block.startswith("#"):
+       return BlockType.HEADING
+    if block.startswith("```") and block.endswith("```"):
+       return BlockType.CODE
+    if block.startswith(">"):
+        lines = block.split("\n")
+        for line in lines:
+            if not line.startswith(">"):
+                raise Exception("Error: not a valid MD quote block")
+        return BlockType.QUOTE
+    if block.startswith("- "):
+        lines = block.split("\n")
+        for line in lines:
+            if not line.startswith("- "):
+                raise Exception("Error: not a valid MD unordered list")
+        return BlockType.UNORDERED_LIST
+    if block.startswith("1. "):
+        lines = block.split("\n")
+        for i in range(len(lines)):
+             
+                raise Exception("Error: not a valid MD ordered list")
+        return BlockType.ORDERED_LIST
+    else:
+        return BlockType.PARAGRAPH
+
         #for quote, split the block into line with a \n delimiter then use startswith
         #for UL same as quote but starts with is "- "
         #for OL might have to see if startswith supports pattern matching or use for loop
