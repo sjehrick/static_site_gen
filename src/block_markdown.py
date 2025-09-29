@@ -13,7 +13,7 @@ def markdown_to_blocks(markdown):
 
     working_blocks = markdown.split("\n\n")
 
-    for block in working_blocks:    
+    for block in working_blocks:
         if block == "":
             continue
         block = block.strip()
@@ -46,3 +46,7 @@ def block_to_block_type(block):
             i += 1
         return BlockType.OLIST
     return BlockType.PARAGRAPH
+
+def markdown_to_html_node(markdown):
+    blocks = markdown_to_blocks(markdown)
+
