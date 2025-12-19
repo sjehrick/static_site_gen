@@ -14,11 +14,13 @@ def generate_page(from_path, template_path, dest_path):
 
     html_from_markdown = markdown_to_html_node(markdown_content)
 
+    to_html_from_markdown = html_from_markdown.to_html()
+
     markdown_title = extract_title(markdown_content)
 
     html_template_wtitle = html_content.replace("{{ Title }}", markdown_title)
 
-    complete_html_template = html_template_wtitle.replace("{{ Content }}", html_from_markdown)
+    complete_html_template = html_template_wtitle.replace("{{ Content }}", to_html_from_markdown)
 
     dir_path = os.path.dirname(dest_path)
 
