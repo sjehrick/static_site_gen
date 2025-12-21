@@ -29,3 +29,7 @@ def generate_page(from_path, template_path, dest_path):
 
     with open(dest_path, "w") as file:
         file.write(complete_html_template)
+
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    print(f"Generating pages from {dir_path_content} to {dest_dir_path} using {template_path}")
